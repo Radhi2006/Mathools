@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Segitiga</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <a href="index.html" class="home-btn">
+  <svg width="22" height="22" viewBox="0 0 24 24">
+    <path fill="#1E3A8A" d="M12 3l9 8h-3v9h-5v-6H11v6H6v-9H3z"/>
+  </svg>
+</a>
+    <h1>MATHOOLS</h1>
+</header>
+
+<div class="layout">
+
+<div class="left">
+<div class="triangle" style="margin:auto">
+  <svg viewBox="0 0 140 120">
+    <polygon points="70,5 135,115 5,115"
+    fill="#EDEDED"
+    stroke="#1E3A8A"
+    stroke-width="6"/>
+  </svg>
+</div>
+
+<h2 style="color:#1E3A8A;margin-top:20px">Rumus luas Segitiga</h2>
+<div class="box">L = 1/2 x a x t</div>
+<div class="box">Variabel a : alas segitiga<br>Variabel t : tinggi segitiga</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="right">
+<h3 style="color:#1E3A8A">Nilai alas ( a ) =</h3>
+<input id="a" placeholder="Masukkan nilai a">
+
+<h3 style="color:#1E3A8A">Nilai tinggi ( t ) =</h3>
+<input id="t" placeholder="Masukkan nilai t">
+
+<button onclick="hitungSegitiga()">Hitung luas</button>
+
+<div class="box" id="langkahT">-</div>
+<div class="box result" id="hasilT">??</div>
+</div>
+
+</div>
+
+<script>
+function hitungSegitiga(){
+  let inputA = document.getElementById('a').value.trim();
+  let inputT = document.getElementById('t').value.trim();
+
+  let regex = /^\d+(\.\d+)?$/;
+
+  // 1. validasi format
+  if(!regex.test(inputA) || !regex.test(inputT)){
+    alert("Masukkan angka yang valid!");
+    return;
+  }
+
+  let a = parseFloat(inputA);
+  let t = parseFloat(inputT);
+
+  // 2. VALIDASI TIDAK BOLEH 0 (DI SINI)
+  if(a <= 0 || t <= 0){
+    alert("Nilai alas dan tinggi harus lebih dari 0!");
+    return;
+  }
+
+  let L = 0.5 * a * t;
+
+  document.getElementById('langkahT').innerHTML =
+    "1. Rumus : L = 1/2 x a x t<br>" +
+    "2. Substitusi : L = 1/2 x " + a + " x " + t + "<br>" +
+    "3. Kalikan a x t : L = 1/2 x " + (a*t);
+
+  document.getElementById('hasilT').innerHTML =
+    "Luas segitiga = " + L;
+}
+</script>
+
+</body>
+</html>
